@@ -1,8 +1,8 @@
 body {
-  font-size: 10pt;
+  font-size: 9pt;
   line-height: 24pt;
   text-align: center;
-  width: 90%;
+  width: 98%;
   max-width: 600px;
   margin: 3em auto;
   font-family: Monospace;
@@ -11,6 +11,8 @@ body {
 
 table {
   margin: 2em auto;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 table, th {
