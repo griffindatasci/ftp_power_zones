@@ -1,0 +1,42 @@
+body {
+  font-size: 10pt;
+  line-height: 24pt;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 3em auto;
+  font-family: Monospace;
+  background-color: #f5f5f7;
+}
+
+table {
+  margin: 2em auto;
+}
+
+table, th {
+    text-align: right !important;
+}
+
+td:nth-child(1), th:nth-child(1) {
+  text-align: left !important;
+}
+
+input {
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #1090aa20;
+  max-width: 7em;
+}
+
+/* Remove spinner arrows from inputs -----------------------------------------*/
+/* - Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* - Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
