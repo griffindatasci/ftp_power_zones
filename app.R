@@ -20,7 +20,7 @@ server <- function(input, output) {
     
     # constants
     Zone <- paste(7:1, c("Neuromuscular", "Anaerobic", "VO2 Max", "Threshold", 
-                         "Tempo", "Endurance", "Recovery"), sep=". ")
+                         "Tempo", "Endurance", "Recovery"), sep=": ")
     bounds <- c(NA, 1.5, 1.2, 1.05, 0.9, 0.75, 0.55, 0)
     
     # primary output - table of power zones
@@ -40,13 +40,13 @@ server <- function(input, output) {
         power_zones[, upp_wkg:=upp_w/input$kg]
         
         # formatting
-        power_zones[, Watts:=ifelse(is.na(upp_w), sprintf(">%3.f", low_w-1), 
+        power_zones[, Watts:=ifelse(is.na(upp_w), sprintf(">%.f", low_w-1), 
                                     ifelse(low_w==0, sprintf("<%.f", upp_w), 
-                                           sprintf("%3.f - %3.f", low_w, upp_w-1)))]
+                                           sprintf("%3.f-%3.f", low_w, upp_w-1)))]
         
-        power_zones[, `W/kg`:=ifelse(is.na(upp_wkg), sprintf(">%3.2f", low_wkg-0.01), 
+        power_zones[, `W/kg`:=ifelse(is.na(upp_wkg), sprintf(">%.2f", low_wkg-0.01), 
                                      ifelse(low_wkg==0, sprintf("<%.2f", upp_wkg), 
-                                            sprintf("%3.2f - %3.2f", low_wkg, upp_wkg-0.01)))]
+                                            sprintf("%.2f-%.2f", low_wkg, upp_wkg-0.01)))]
         
         # output
         power_zones[, .(Zone, Watts, `W/kg`)]})
