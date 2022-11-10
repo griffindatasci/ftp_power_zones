@@ -1,18 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap');
+
 body {
   font-size: 9pt;
   line-height: 24pt;
   text-align: center;
   width: 98%;
   max-width: 600px;
-  margin: 3em auto;
-  font-family: Monospace;
+  margin: 5em auto;
+  font-family: 'Source Code Pro', monospace;
   background-color: #f5f5f7;
+}
+
+
+.top-bar {
+  width: 92%;
+  max-width: 600px;
+  height: 3em;
+  position: fixed;
+  top: 0;
+  left: 0.5;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 5;
+  font-weight: 500;
+  color: white;
+}
+
+.top-bar::before {
+  width: 100%;
+  height: 3em;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(45,84,91);
+  z-index: -1;
+}
+
+.top-bar > .site-title > a {
+  color: #ffffff80;
+  transition-duration: 0.4s;
+}
+
+.top-bar > .site-title > a:hover {
+  text-decoration: none;
+  color: white;
 }
 
 table {
   margin: 2em auto;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+.table>tbody>tr>td {
+  border: none;
+}
+
+.table>thead:first-child>tr:first-child>th {
+  border-top: 1px solid rgb(45,84,91);
+  border-bottom: 1px solid rgb(45,84,91);
+}
+
+.table>tbody:last-child>tr:last-child>td {
+  border-bottom: 1px solid rgb(45,84,91);
 }
 
 table, th {
@@ -26,10 +79,13 @@ td:nth-child(1), th:nth-child(1) {
 input {
   text-align: center;
   border-radius: 4px;
-  border: 1px solid #1090aa20;
+  border: 1px solid #4a709060;
   max-width: 7em;
 }
 
+.zp {
+  color: #FB6418;  
+}
 /* Remove spinner arrows from inputs -----------------------------------------*/
 /* - Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
