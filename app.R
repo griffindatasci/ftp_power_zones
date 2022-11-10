@@ -2,9 +2,12 @@ library(data.table)
 library(shiny)
 
 ui <- fluidPage(
+    includeHTML("www/page_header.html"),
+    includeHTML("www/page_top.html"),
     includeCSS("www/style.css"),
-    
-    # get functional threshold power and weight values - used tags over numericInput() to skip append of placeholder
+
+    # Get functional threshold power and weight values 
+    # - used tags over numericInput() to skip append of placeholder
     tags$input(name="ftp", placeholder="FTP",    type="number", value=NA, min=1),
     tags$input(name="kg",  placeholder="Weight", type="number", value=NA, min=1),
     
@@ -12,8 +15,9 @@ ui <- fluidPage(
     tableOutput("power_table"),
     
     # Return secondary outputs
-    textOutput("ftp_wkg"),
-    textOutput("sweetspot")
+    tagAppendAttributes(textOutput("ftp_wkg"), class="zp"),
+    textOutput("sweetspot"),
+    textOutput("zp_cat")
 )
 
 server <- function(input, output) {
@@ -22,13 +26,12 @@ server <- function(input, output) {
     Zone <- paste(7:1, c("Neuromuscular", "Anaerobic", "VO2 Max", "Threshold", 
                          "Tempo", "Endurance", "Recovery"), sep=": ")
     bounds <- c(NA, 1.5, 1.2, 1.05, 0.9, 0.75, 0.55, 0)
-    
+
     # primary output - table of power zones
     output$power_table <- renderTable({
         
         # return nothing unless these values are present
-        req(input$ftp)
-        req(input$kg)
+        req(input$ftp, input$kg)
         
         # initiate table
         power_zones <- data.table(Zone,
@@ -53,18 +56,21 @@ server <- function(input, output) {
     
     # secondary output: w/kg at ftp
     output$ftp_wkg <- renderText({
-        req(input$ftp)
-        req(input$kg)
+        req(input$ftp, input$kg)
         sprintf("W/kg at FTP: %.2f", input$ftp/input$kg)
     })
     
     # secondary output: watts for sweetspot training
     output$sweetspot <- renderText({
-        req(input$ftp)
-        req(input$kg)
+        req(input$ftp, input$kg)
         sprintf("Sweetspot range (W): %.f - %.f", input$ftp*0.87, input$ftp*0.93)
     })
-    
+
+    # secondary output: 95% w/kg at ftp
+    output$zp_cat <- renderText({
+        req(input$ftp, input$kg)
+        sprintf("95%% of FTP: %.2f", input$ftp/input$kg*0.95)
+    })
 }
 
 shinyApp(ui=ui, server=server)
