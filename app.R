@@ -8,16 +8,16 @@ ui <- fluidPage(
 
     # Get functional threshold power and weight values 
     # - used tags over numericInput() to skip append of placeholder
-    tags$input(name="ftp", placeholder="FTP",    type="number", value=NA, min=1),
-    tags$input(name="kg",  placeholder="Weight", type="number", value=NA, min=1),
+    tags$input(name="ftp", placeholder="FTP (W)",    type="number", value=NA, min=1),
+    tags$input(name="kg",  placeholder="Weight (kg)", type="number", value=NA, min=1),
     
     # Return the main table
     tableOutput("power_table"),
     
     # Return secondary outputs
     tagAppendAttributes(textOutput("ftp_wkg"), class="zp"),
-    textOutput("sweetspot"),
-    textOutput("zp_cat")
+    textOutput("sweetspot")#,
+    #textOutput("zp_cat")
 )
 
 server <- function(input, output) {

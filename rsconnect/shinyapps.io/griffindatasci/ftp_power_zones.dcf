@@ -1,0 +1,13 @@
+name: ftp_power_zones
+title: ftp_power_zones
+username:
+account: griffindatasci
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7570810
+bundleId: 6893991
+url: https://griffindatasci.shinyapps.io/ftp_power_zones/
+when: 1677524981.24064
+lastSyncTime: 1677524981.24068
+asMultiple: FALSE
+asStatic: FALSE
